@@ -1,7 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 import {
-    toWidget,
     toWidgetEditable,
     viewToModelPositionOutsideModelElement,
 } from '@ckeditor/ckeditor5-widget/src/utils';
@@ -51,13 +50,16 @@ export default class WSMButtonEditing extends Plugin {
             allowWhere: '$text',
 
             // It will act as an inline node:
-            isInline: false,
+            isInline: true,
 
-            // The inline widget is self-contained so it cannot be split by the caret and it can be selected:
-            isObject: false,
+            // The inline widget is self-contained, so it cannot be split by the caret, and it can be selected:
+            isObject: true,
+
+            // The inline widget can have the same attributes as text (for example linkHref, bold):
+            allowAttributesOf: '$text',
 
             // The placeholder can have many types, like date, name, surname, etc:
-            allowAttributes: ['name', 'id'],
+            allowAttributes: ['name'],
         });
     }
 
@@ -77,9 +79,8 @@ export default class WSMButtonEditing extends Plugin {
         //                 config.get('wsmButtonBrackets.open').length,
         //                 0 - config.get('wsmButtonBrackets.close').length
         //             );
-
+        //
         //         const modelWriter = writer.writer || writer;
-
         //         return modelWriter.createElement(WSMBTN, {name});
         //     },
         // });
@@ -88,13 +89,7 @@ export default class WSMButtonEditing extends Plugin {
             model: WSMBTN,
             view: (modelItem, writer) => {
                 const viewWriter = writer.writer || writer;
-
-                const widgetElement = createWSMButtonView(
-                    modelItem,
-                    viewWriter
-                );
-
-                // return toWidget(widgetElement, viewWriter);
+                const widgetElement = createWSMButtonView(modelItem, viewWriter);
                 return toWidgetEditable(widgetElement, viewWriter);
             },
         });
@@ -103,7 +98,6 @@ export default class WSMButtonEditing extends Plugin {
             model: WSMBTN,
             view: (modelItem, writer) => {
                 const viewWriter = writer.writer || writer;
-
                 return createWSMButtonView(modelItem, viewWriter);
             },
         });
@@ -111,12 +105,7 @@ export default class WSMButtonEditing extends Plugin {
         // Helper method for both downcast converters.
         function createWSMButtonView(modelItem, viewWriter) {
             const name = modelItem.getAttribute('name');
-            // const id = modelItem.getAttribute('id');
-
-            const wsmButtonView = viewWriter.createContainerElement('span', {
-                class: 'wsmbutton-text',
-                // id: id
-            });
+            const wsmButtonView = viewWriter.createContainerElement('span', {class: 'wsmbutton-text'}, {isAllowedInsideAttributeElement: true});
 
             const innerText = viewWriter.createText(
                 config.get('wsmButtonBrackets.open') +
@@ -124,11 +113,7 @@ export default class WSMButtonEditing extends Plugin {
                 config.get('wsmButtonBrackets.close')
             );
 
-            viewWriter.insert(
-                viewWriter.createPositionAt(wsmButtonView, 0),
-                innerText
-            );
-
+            viewWriter.insert(viewWriter.createPositionAt(wsmButtonView, 0), innerText);
             return wsmButtonView;
         }
     }

@@ -20,12 +20,11 @@ export default class WSMButtonUI extends Plugin {
 
             // Execute the command when the button is clicked
             this.listenTo(btn, 'execute', () => {
-				window.addEventListener("onClickWsmBtnData", function(event) {
-					const data = event.detail.value || '';
-                    const id = event.detail.id || `${Date.now()}`;
-					editor.execute('wsmbutton', { value: data, id: id });
-				}, false);
-				window.dispatchEvent(new Event('onClickWsmButton'));
+                window.addEventListener("onClickWsmBtnData", function (event) {
+                    const data = event.detail.value || '';
+                    editor.execute('wsmbutton', {value: data});
+                }, false);
+                window.dispatchEvent(new Event('onClickWsmButton'));
             });
 
             return btn;
