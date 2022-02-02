@@ -1,0 +1,19 @@
+/* .wsmbutton-text.ck-widget {
+    background: transparent;
+    line-height: 1em;
+    margin: 0 1px;
+    outline-offset: -2px;
+    padding: 4px 2px;
+}
+
+.wsmbutton-text.ck-widget_selected {
+    outline-color: transparent !important;
+}
+
+.wsmbutton-text.ck-widget:hover {
+    outline-color: transparent !important;
+}
+
+.wsmbutton-text.ck-widget.ck-clipboard-drop-target-range {
+	outline: 3px solid transparent !important;
+} */
