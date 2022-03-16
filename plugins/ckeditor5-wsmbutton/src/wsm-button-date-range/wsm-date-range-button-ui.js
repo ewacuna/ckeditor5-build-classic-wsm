@@ -24,7 +24,7 @@ export default class WsmDateRangeButtonUI extends Plugin{
                         editor.execute('wsm-date-range-button', {value: data})
                     }
                 }, {once: true})
-                window.dispatchEvent(new Event('onClickWsmDateRangeBtnData'));
+                window.dispatchEvent(new Event('onClickWsmDateRangeButton'));
             });
             return btn;
         });
