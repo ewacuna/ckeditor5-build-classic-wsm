@@ -84,7 +84,7 @@ export default class WsmDateRangeButtonEditing extends Plugin {
 
          function createWsmRangeDateButtonView(modelItem, viewWriter) {
              const name = modelItem.getAttribute('name');
-             const wsmRangeDateButtonView = createContainerElement('span', {class: 'wsmbutton-text'}, {isAllowedInsideAttributeElement: true});
+             const wsmRangeDateButtonView = viewWriter.createContainerElement('span', {class: 'wsmbutton-text'}, {isAllowedInsideAttributeElement: true});
 
              const innerText = viewWriter.createText(
                 config.get('wsmDateRangeButtonBrackets.open') +
