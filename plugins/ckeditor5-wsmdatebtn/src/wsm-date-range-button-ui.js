@@ -1,6 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import calendar_plus_icon from '../theme/icons/calendar_plus_icon.svg';
+import calendar_plus_icon from './theme/icons/calendar_plus_icon.svg';
 
 export default class WsmDateRangeButtonUI extends Plugin{
     init() {
@@ -18,13 +18,14 @@ export default class WsmDateRangeButtonUI extends Plugin{
 
             // Execute the command when the button is clicked
             this.listenTo(btn, 'execute', () => {
-                window.addEventListener("onClickWsmDateRangeBtnData", function(event){
-                    if(event.detail && event.detail.value){
-                        const data = event.detail.value || '';
-                        editor.execute('wsm-date-range-button', {value: data})
-                    }
-                }, {once: true})
-                window.dispatchEvent(new Event('onClickWsmDateRangeButton'));
+                editor.execute('wsm-date-range-button', {value: 'Elvin Acuña'})
+                // window.addEventListener("onClickWsmDateRangeBtnData", function(event){
+                //     if(event.detail && event.detail.value){
+                //         const data = event.detail.value || '';
+                //         editor.execute('wsm-date-range-button', {value: data})
+                //     }
+                // }, {once: true})
+                // window.dispatchEvent(new Event('onClickWsmDateRangeButton'));
             });
             return btn;
         });

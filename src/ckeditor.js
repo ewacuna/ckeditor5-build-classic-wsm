@@ -59,7 +59,7 @@ import Placeholder from "ckeditor5-placeholder";
 
 // Custom Plugins
 import WSMButton from '../plugins/ckeditor5-wsmbutton/src/index';
-import WsmDateRangeButton from '../plugins/ckeditor5-wsmbutton/src/wsm-button-date-range/index';
+import WsmDateRangeButton from '../plugins/ckeditor5-wsmdatebtn/src/index';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
