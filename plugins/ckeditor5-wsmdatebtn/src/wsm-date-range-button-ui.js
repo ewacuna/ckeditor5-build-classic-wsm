@@ -18,14 +18,13 @@ export default class WsmDateRangeButtonUI extends Plugin{
 
             // Execute the command when the button is clicked
             this.listenTo(btn, 'execute', () => {
-                editor.execute('wsm-date-range-button', {value: 'Elvin Acuña'})
-                // window.addEventListener("onClickWsmDateRangeBtnData", function(event){
-                //     if(event.detail && event.detail.value){
-                //         const data = event.detail.value || '';
-                //         editor.execute('wsm-date-range-button', {value: data})
-                //     }
-                // }, {once: true})
-                // window.dispatchEvent(new Event('onClickWsmDateRangeButton'));
+                window.addEventListener("onClickWsmDateRangeBtnData", function(event){
+                    if(event.detail && event.detail.value){
+                        const data = event.detail.value || '';
+                        editor.execute('wsm-date-range-button', {value: data})
+                    }
+                }, {once: true})
+                window.dispatchEvent(new Event('onClickWsmDateRangeButton'));
             });
             return btn;
         });
